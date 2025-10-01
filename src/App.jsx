@@ -1,9 +1,17 @@
-import { myData } from "../data.js";
+import { useState } from "react";
+import { myData, EXAMPLES } from "../data.js";
 import Header from "./components/Header/Header.jsx";
 import MainContent from "./components/Maincontent.jsx";
-// import TabButton from "./components/TabButton.jsx";
+import TabButton from "./components/TabButton.jsx";
 
 function App() {
+  useState();
+  const [selectedTopic, setSelectedTopic] = useState();
+  console.log("App is called");
+  function handClick(selectButton) {
+    setSelectedTopic(selectButton);
+  }
+
   return (
     <>
       <Header />
@@ -15,17 +23,51 @@ function App() {
             <MainContent {...myData[1]} />
             <MainContent {...myData[2]} />
           </ul>
-          <section id="examples">
-            <h2> Examples </h2>
-            <menu>
-              <li>
-                <button>Aurora</button>
-                <button>Ariel</button>
-                <button>Oliver twist</button>
-              </li>
-              {/* <TabButton> aaa </TabButton> */}
-            </menu>
-          </section>
+        </section>
+        <section id="examples">
+          <h2> Examples </h2>
+          <menu>
+            <ul>
+              <TabButton
+                isSelected={selectedTopic === "Aurora"}
+                onSelect={() => {
+                  handClick(`Aurora`);
+                }}
+              >
+                Aurora
+              </TabButton>
+              <TabButton
+                isSelected={selectedTopic === "Ariel"}
+                onSelect={() => {
+                  handClick(`Ariel`);
+                }}
+              >
+                Ariel
+              </TabButton>
+              <TabButton
+                isSelected={selectedTopic === "OliverTwist"}
+                onSelect={() => {
+                  handClick(`OliverTwist`);
+                }}
+              >
+                Oliver Twist
+              </TabButton>
+            </ul>
+          </menu>
+          {selectedTopic}
+          {/* {currenttHi} */}
+
+          {!selectedTopic ? (
+            <p> Please click button </p>
+          ) : (
+            <div id="tab-content">
+              <h3>{EXAMPLES[selectedTopic].title}</h3>
+              <p>{EXAMPLES[selectedTopic].desc}</p>
+              <pre>
+                <code>{EXAMPLES[selectedTopic].code}</code>
+              </pre>
+            </div>
+          )}
         </section>
       </main>
     </>
@@ -33,6 +75,16 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <TabButton
+                onSelect={() => {
+                  timeCheck();
+                }}
+              >
+                Hi button
+              </TabButton> */
+}
 
 // function MainContent(props) {
 //   return (
@@ -61,3 +113,16 @@ export default App;
               desc={myData[2].desc}
             /> */
 }
+
+// const [currenttHi, setCurrentHi] = useState("Hi there");
+// function timeCheck() {
+//   // const currentHour1 = new Date().getHours();
+//   const currentHour = 19;
+//   if (currentHour >= 5 && currentHour <= 12) {
+//     setCurrentHi("Good morning");
+//   } else if (currentHour > 12 && currentHour <= 18) {
+//     setCurrentHi("Good afternoon");
+//   } else {
+//     setCurrentHi("Good evening");
+//   }
+// }
