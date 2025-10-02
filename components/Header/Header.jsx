@@ -1,19 +1,14 @@
-import logo from "../../assets/logo-tuhoc.png";
-import "./Header.css";
-
+import logo from "../../assets/9.jpeg";
+import "./Header.css"
 function Header() {
   return (
     <>
       <header>
         <img src={logo} alt="Tự Học" />
-        <h1>React Tuhoc.cc</h1>
-        <p>
-          Học React - Khám phá cách xây dựng ứng dụng linh hoạt, hiện đại, và
-          đầy sáng tạo!
-        </p>
+        <h1>DisneyChannel</h1>
+        <p>Hi this is my disney channel</p>
       </header>
     </>
   );
 }
-
 export default Header;
